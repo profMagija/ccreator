@@ -1,0 +1,94 @@
+.ms-cost {
+    font-size: 0.9em;
+}
+
+.ms-cost.ms-w::before,
+.ms-cost.ms-u::before,
+.ms-cost.ms-b::before,
+.ms-cost.ms-g::before {
+    font-size: 1.0em;
+}
+
+.cc-shadow>i {
+    background: black !important;
+}
+
+.ms-inline {
+    font-size: 0.6em !important;
+    margin-left: 0.2em;
+    /* margin-right: 0.2em; */
+}
+
+.text-deco i:not(.ms) {
+    font-family: 'MPlantin-Italic';
+    font-style: normal;
+}
+
+.text-deco {
+    line-height: 0.95;
+    width: 100%;
+}
+
+.text-deco hr {
+    margin: 0.3em;
+    background: radial-gradient(rgba(0, 0, 0, 0.2), transparent 70%);
+    height: 2px;
+    border: none;
+}
+
+p {
+    margin-bottom: 0;
+    margin-top: 1ex;
+}
+
+td {
+    vertical-align: top;
+}
+
+.card-cost {
+    margin-left: 0.15em;
+}
+
+#card-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    max-width: 411px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Trueno-Light';
+    src: url('../fonts/truenolt.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#cardlist {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+#cardlist > tr:hover {
+    background-color: #666666;
+}
+
+tr.current-card {
+    background-color: #444444;
+}
+
+body {
+    background-color: black;
+    color: white;
+}

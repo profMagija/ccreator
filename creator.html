@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/mana.min.css">
+    <link rel="stylesheet" href="./css/card.css">
+
+    <script src="./lib/html2canvas.min.js"></script>
+    <script src="./lib/FileSaver.min.js"></script>
+</head>
+
+<body>
+    <table width="100%" data-html2canvas-ignore="true">
+        <tr>
+            <td width="20%" style="vertical-align: top">
+                <h3>Card Data</h3>
+                    <input type="hidden" id="input-id">
+                <p>
+                    Name: <br> <input type="text" id="input-name" oninput="update_card()">
+                <p>
+                    Cost: <br> <input type="text" id="input-cost" oninput="update_card()">
+                <p>
+                    Image: <br> <input type="file" id="input-image" onchange="load_file()"> <br>
+                    <input type="checkbox" id="input-full-art" onchange="update_card()"> Full Art ?
+                <p>
+                <table width="100%">
+                    <tr>
+                        <td width="50%">
+                            Supertypes: <br>
+                            <input type="checkbox" id="input-basic" oninput="update_card()"> Basic <br>
+                            <input type="checkbox" id="input-legendary" oninput="update_card()"> Legendary <br>
+                            <input type="checkbox" id="input-tribal" oninput="update_card()"> Tribal <br>
+                            <input type="checkbox" id="input-snow" oninput="update_card()"> Snow <br>
+                            <input type="checkbox" id="input-world" oninput="update_card()"> World <br>
+                        </td>
+                        <td width="50%">
+                            Type: <br>
+                            <select id="input-type" oninput="update_card()">
+                                <option value="Creature">Creature</option>
+                                <option value="Artifact">Artifact</option>
+                                <option value="Artifact Creature">Artifact Creature</option>
+                                <option value="Enchantment">Enchantment</option>
+                                <option value="Instant">Instant</option>
+                                <option value="Sorcery">Sorcery</option>
+                                <option value="Land">Land</option>
+                                <option value="Planeswalker">Planeswalker</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    Subtype: <br> <input type="text" id="input-subtype" oninput="update_card()">
+                <p>
+                    Text:<br>
+                    <textarea id="input-text" rows="7" oninput="update_card()"></textarea>
+                <p>
+                    Flavor text:<br>
+                    <textarea id="input-flavor" rows="7" oninput="update_card()"></textarea>
+                <p>
+                    Power / Toughness: <br> <input type="text" id="input-pt" oninput="update_card()">
+                </p>
+                <h3>Bottom text</h3>
+                <p>
+                <table width="100%">
+                    <tr>
+                        <td width="33%">
+                            Card #: <br> <input type="text" id="input-card-number" oninput="update_card()">
+                        </td>
+                        <td width="33%">
+                            Set total: <br> <input type="text" id="input-set-total" oninput="update_card()">
+                        </td>
+                        <td width="33%">
+                            Card rarity: <br> <select id="input-card-rarity" oninput="update_card()">
+                                <option value="C">Common</option>
+                                <option value="L">Basic Land</option>
+                                <option value="U">Uncommon</option>
+                                <option value="R">Rare</option>
+                                <option value="M">Mythic Rare</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="33%">
+                            Set code: <br> <input type="text" id="input-set-name" oninput="update_card()" value="SET">
+                        </td>
+                        <td width="33%">
+                            Card lang.: <br> <input type="text" id="input-card-lang" oninput="update_card()" value="EN">
+                        </td>
+                        <td width="33%">
+                            Artist: <br> <input type="text" id="input-artist-name" oninput="update_card()">
+                        </td>
+                    </tr>
+                </table>
+                <h3>Colors</h3>
+                <p>
+                    Color Override (also lands): <br>
+                    <select id="input-color" oninput="update_card()">
+                        <option value="">Auto (based on cost)</option>
+                        <option disabled></option>
+                        <option value="w">White</option>
+                        <option value="u">Blue</option>
+                        <option value="r">Red</option>
+                        <option value="b">Black</option>
+                        <option value="g">Green</option>
+                        <option disabled></option>
+                        <option value="wu">White/Blue</option>
+                        <option value="ub">Blue/Black</option>
+                        <option value="br">Black/Red</option>
+                        <option value="rg">Red/Green</option>
+                        <option value="gw">Green/White</option>
+                        <option value="wb">WWhite/Black</option>
+                        <option value="bg">Black/Green</option>
+                        <option value="gu">Green/Blue</option>
+                        <option value="ur">Black/Red</option>
+                        <option value="rw">Red/White</option>
+                        <option disabled></option>
+                        <option value="gold">Gold - Multicolored</option>
+                        <option value="a">Artifact</option>
+                        <option value="l">Land</option>
+                    </select> <input type="checkbox" id="input-mixcolored" oninput="update_card()"> Mixcolored?
+                <p>
+                    <input type="checkbox" id="input-nyx" oninput="update_card()"> Starry background?
+                <p>
+                    Background Color: <br>
+                    <select id="input-background-color" oninput="update_card()">
+                        <option value="">Auto (based on card color)</option>
+                        <option disabled></option>
+                        <option value="w">White</option>
+                        <option value="u">Blue</option>
+                        <option value="r">Red</option>
+                        <option value="b">Black</option>
+                        <option value="g">Green</option>
+                        <option disabled></option>
+                        <option value="wu">White/Blue</option>
+                        <option value="ub">Blue/Black</option>
+                        <option value="br">Black/Red</option>
+                        <option value="rg">Red/Green</option>
+                        <option value="gw">Green/White</option>
+                        <option value="wb">WWhite/Black</option>
+                        <option value="bg">Black/Green</option>
+                        <option value="gu">Green/Blue</option>
+                        <option value="ur">Black/Red</option>
+                        <option value="rw">Red/White</option>
+                        <option disabled></option>
+                        <option value="gold">Gold - Multicolored</option>
+                        <option value="a">Artifact</option>
+                        <option value="l">Land</option>
+                    </select>
+                <p>
+                    Textbox Color (Name, Types, P/T): <br>
+                    <select id="input-textbox-color" oninput="update_card()">
+                        <option value="">Auto (based on card color)</option>
+                        <option disabled></option>
+                        <option value="w">White</option>
+                        <option value="u">Blue</option>
+                        <option value="r">Red</option>
+                        <option value="b">Black</option>
+                        <option value="g">Green</option>
+                        <option disabled></option>
+                        <option value="gold">Gold - Multicolored</option>
+                        <option value="l">Colorless / Land</option>
+                        <option value="a">Artifact</option>
+                    </select>
+                <p>
+                    Frame Color: <br>
+                    <select id="input-frame-color" oninput="update_card()">
+                        <option value="">Auto (based on card color)</option>
+                        <option disabled></option>
+                        <option value="w">White</option>
+                        <option value="u">Blue</option>
+                        <option value="r">Red</option>
+                        <option value="b">Black</option>
+                        <option value="g">Green</option>
+                        <option disabled></option>
+                        <option value="wu">White/Blue</option>
+                        <option value="ub">Blue/Black</option>
+                        <option value="br">Black/Red</option>
+                        <option value="rg">Red/Green</option>
+                        <option value="gw">Green/White</option>
+                        <option value="wb">WWhite/Black</option>
+                        <option value="bg">Black/Green</option>
+                        <option value="gu">Green/Blue</option>
+                        <option value="ur">Black/Red</option>
+                        <option value="rw">Red/White</option>
+                        <option disabled></option>
+                        <option value="gold">Gold - Multicolored</option>
+                        <option value="l">Colorless / Land</option>
+                        <option value="a">Artifact</option>
+                    </select>
+                </p>
+                <hr>
+                <p>
+                    <button onclick="download_card(false, false)">Preview card</button>
+                <p>
+                    <button onclick="download_card(false, true)">Save current card</button>
+                <p>
+                    <button onclick="download_card(true, true)">Save current card w/ bleed</button>
+            </td>
+            <td width="55%">
+                <button onclick="create_card()">Create card</button> 
+                <button onclick="delete_card()">Delete card</button> <br>
+                <table id="cardlist">
+                    
+                </table>
+            </td>
+            <td width="25%" style="max-width: 0px;">
+            </td>
+        </tr>
+    </table>
+    <div id="card-container">
+        <div id="card"></div>
+    </div>
+    <script src="./js/creator.js"></script>
+</body>
+
+</html>
