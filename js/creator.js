@@ -365,9 +365,9 @@ function default_card(id) {
         bg_color: '',
         frame_color: '',
         textbox_color: '',
-        card_number: '',
-        set_total: '',
-        rarity: '',
+        card_number: '1',
+        set_total: '1',
+        rarity: 'C',
         set_name: 'SET',
         card_lang: 'EN',
         artist_name: '',
@@ -456,12 +456,22 @@ function load_to_fields(card) {
 }
 
 function update_card() {
-    const card = load_from_fields();
+    let card = load_from_fields();
     render_card(card);
     save_card();
 }
 
-update_card();
+function initial_load() {
+    let all_cards = load_all_cards();
+    if (all_cards.length == 0) {
+        create_card();
+    } else {
+        load_to_fields(all_cards[0]);
+        update_card();
+    }
+}
+
+initial_load();
 
 function load_file() {
     const file_input = document.getElementById('input-image');
@@ -588,9 +598,10 @@ function create_card() {
 
 function delete_card() {
     const id = current_card_id();
-    localStorage.removeItem(id);
-    load_card_from_storage(localStorage.key(0));
-    update_card();
+    if (confirm('Are you sure you want to delete "' + document.getElementById('input-name').value + '"?')) {
+        localStorage.removeItem('card-' + id);
+        initial_load();
+    }
 }
 
 render_table();

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ProfMagija's Card Creator</title>
     <link rel="stylesheet" href="./lib/mana.min.css">
     <link rel="stylesheet" href="./css/card.css">
 
@@ -17,11 +17,21 @@
         <tr>
             <td width="20%" style="vertical-align: top">
                 <h3>Card Data</h3>
-                    <input type="hidden" id="input-id">
+                <input type="hidden" id="input-id">
                 <p>
                     Name: <br> <input type="text" id="input-name" oninput="update_card()">
                 <p>
-                    Cost: <br> <input type="text" id="input-cost" oninput="update_card()">
+                    Cost: <br> <input type="text" id="input-cost" oninput="update_card()"> <br>
+                    <span style='font-size: 10pt;'>
+                        <span style='font-family: monospace;'>{2}{W}{UR}{2B}{GP}{C}</span>
+                        &rarr;
+                        <i class='ms ms-2 ms-cost'></i>
+                        <i class='ms ms-w ms-cost'></i>
+                        <i class='ms ms-ur ms-cost'></i>
+                        <i class='ms ms-2b ms-cost'></i>
+                        <i class='ms ms-gp ms-cost'></i>
+                        <i class='ms ms-c ms-cost'></i>
+                    </span>
                 <p>
                     Image: <br> <input type="file" id="input-image" onchange="load_file()"> <br>
                     <input type="checkbox" id="input-full-art" onchange="update_card()"> Full Art ?
@@ -200,10 +210,10 @@
                     <button onclick="download_card(true, true)">Save current card w/ bleed</button>
             </td>
             <td width="55%">
-                <button onclick="create_card()">Create card</button> 
+                <button onclick="create_card()">Create card</button>
                 <button onclick="delete_card()">Delete card</button> <br>
                 <table id="cardlist">
-                    
+
                 </table>
             </td>
             <td width="25%" style="max-width: 0px;">

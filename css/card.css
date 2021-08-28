@@ -2,6 +2,33 @@
     font-size: 0.9em;
 }
 
+.ms-0::before,
+.ms-1::before,
+.ms-2::before,
+.ms-3::before,
+.ms-4::before,
+.ms-5::before,
+.ms-6::before,
+.ms-7::before,
+.ms-8::before,
+.ms-9::before,
+.ms-10::before,
+.ms-11::before,
+.ms-12::before,
+.ms-13::before,
+.ms-14::before,
+.ms-15::before,
+.ms-16::before,
+.ms-17::before,
+.ms-18::before,
+.ms-19::before,
+.ms-100::before,
+.ms-infinity::before {
+    font-size: 0.85em;
+    position: relative;
+    bottom: 0.15em;
+}
+
 .ms-cost.ms-w::before,
 .ms-cost.ms-u::before,
 .ms-cost.ms-b::before,
@@ -67,7 +94,7 @@ textarea {
 
 @font-face {
     font-family: 'Trueno-Light';
-    src: url('../fonts/truenolt.otf');
+    src: url('../fonts/truenolt.otf?v=10.0.1') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -89,6 +116,6 @@ tr.current-card {
 }
 
 body {
-    background-color: black;
+    background-color: #080808;
     color: white;
 }
